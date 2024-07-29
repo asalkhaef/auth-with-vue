@@ -33,5 +33,15 @@
 </template>
     
 <script setup>
+import { ref } from "vue";
+import { useAuthStore } from "../stores/auth";
+
+const email = ref("");
+const password = ref("");
+const authStore = useAuthStore();
+
+const signup = () => {
+  authStore.signup(email.value, password.value);
+};
 </script>
     
