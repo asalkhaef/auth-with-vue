@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="p-6 bg-white rounded shadow-md w-full max-w-sm">
       <h1 class="text-2xl mb-4">Signup</h1>
@@ -44,4 +44,4 @@ const signup = () => {
   authStore.signup(email.value, password.value);
 };
 </script>
-    
+     -->

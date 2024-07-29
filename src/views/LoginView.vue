@@ -4,10 +4,10 @@
       <h1 class="text-2xl mb-4">Login</h1>
       <form @submit.prevent="login">
         <div class="mb-4">
-          <label class="block text-sm font-bold mb-2">Email</label>
+          <label class="block text-sm font-bold mb-2">Username</label>
           <input
-            v-model="email"
-            type="email"
+            v-model="username"
+            type="text"
             class="w-full px-3 py-2 border rounded"
             required
           />
@@ -33,15 +33,26 @@
 </template>
   
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useAuthStore } from "../stores/auth";
+import { useRouter } from "vue-router";
 
-const email = ref("");
+const username = ref("");
 const password = ref("");
 const authStore = useAuthStore();
+const router = useRouter();
 
 const login = () => {
-  authStore.login(email.value, password.value);
+  authStore.login(username.value, password.value);
 };
+
+watch(
+  () => authStore.token,
+  (newToken) => {
+    if (newToken) {
+      router.push("/protected");
+    }
+  }
+);
 </script>
   
