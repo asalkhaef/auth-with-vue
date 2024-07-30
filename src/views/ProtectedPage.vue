@@ -11,14 +11,16 @@
   </div>
 </template>
   
-  <script setup>
+<script setup>
 import { useAuthStore } from "../stores/auth";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const authStore = useAuthStore();
 
 const logout = () => {
   authStore.logout();
-  window.location.href = "/login";
+  router.push("/login");
 };
 </script>
   

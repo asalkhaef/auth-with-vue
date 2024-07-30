@@ -39,16 +39,18 @@ import { useRouter } from "vue-router";
 
 const username = ref("");
 const password = ref("");
-const authStore = useAuthStore();
-const router = useRouter();
+const authStore = useAuthStore(); //For connecting to Pinia in composition API
+const router = useRouter(); //For connecting to router in composition API
 
 const login = () => {
   authStore.login(username.value, password.value);
 };
 
 watch(
+  //First arg is a getter that is reactive
   () => authStore.token,
   (newToken) => {
+    //Second arg is a callback function for when reactive value changed
     if (newToken) {
       router.push("/protected");
     }
